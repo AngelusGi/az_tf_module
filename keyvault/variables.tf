@@ -57,6 +57,7 @@ variable "access_policies_secrets" {
   type = map(object({
     object_id          = string
     secret_permissions = list(string)
+    tenant_id          = string
   }))
   default = {}
 }
@@ -66,6 +67,7 @@ variable "access_policies_keys" {
   type = map(object({
     object_id       = string
     key_permissions = list(string)
+    tenant_id       = string
   }))
   default = {}
 }
@@ -75,6 +77,7 @@ variable "access_policies_certificates" {
   type = map(object({
     object_id               = string
     certificate_permissions = list(string)
+    tenant_id               = string
   }))
   default = {}
 }
