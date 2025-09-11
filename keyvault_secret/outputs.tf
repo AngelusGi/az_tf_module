@@ -1,25 +1,26 @@
-output "ephemeral_secrets_map" {
-  description = "Map of ephemeral secrets with readable keys and values."
-  value = {
-    for secret_name, secret in azurerm_key_vault_secret.ephemeral :
-    secret_name => {
-      id                       = secret.id
-      version                  = secret.version
-      name                     = secret.name
-      resource_id_with_version = secret.resource_id
-    }
-  }
-  sensitive = true
+output "ephemeral_secret_id" {
+  description = "ID of the ephemeral secret."
+  value       = try(azurerm_key_vault_secret.ephemeral[0].id, null)
+  sensitive   = true
 }
 
-output "sensitive_secrets" {
-  description = "Map of secrets with readable keys and values."
-  value = {
-    for secret_name, secret in azurerm_key_vault_secret.secret :
-    secret_name => {
-      id                       = secret.id
-      name                     = secret.name
-    }
-  }
-  sensitive = true
+output "ephemeral_secret_name" {
+  description = "Name of the ephemeral secret."
+  value       = try(azurerm_key_vault_secret.ephemeral[0].name, null)
+}
+
+output "ephemeral_secret_version" {
+  description = "Version of the ephemeral secret."
+  value       = try(azurerm_key_vault_secret.ephemeral[0].version, null)
+}
+
+output "secret_id" {
+  description = "ID of the standard secret."
+  value       = try(azurerm_key_vault_secret.secret[0].id, null)
+  sensitive   = true
+}
+
+output "secret_name" {
+  description = "Name of the standard secret."
+  value       = try(azurerm_key_vault_secret.secret[0].name, null)
 }
