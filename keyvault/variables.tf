@@ -1,12 +1,10 @@
 variable "location" {
   type     = string
-  nullable = false
 }
 
 variable "rg_name" {
   type        = string
   description = "name of the rosource group are contained DevOps Infra resources"
-  nullable    = false
 }
 
 variable "enabled_for_disk_encryption" {
@@ -32,13 +30,11 @@ variable "public_network_access_enabled" {
 variable "name" {
   type        = string
   description = "name of KeyVault"
-  nullable    = false
 }
 
 variable "sku" {
   type     = string
   default  = "standard"
-  nullable = false
 }
 
 variable "tags" {
@@ -46,32 +42,12 @@ variable "tags" {
   nullable = true
 }
 
-variable "access_policies_secrets" {
-  description = "Map of object ids and secret permissions for Key Vault access policies"
+variable "role_assignments" {
+  description = "Map of object ids and IAM Role Assignment for Key Vault access policies"
   type = map(object({
-    object_id          = string
-    secret_permissions = list(string)
-    tenant_id          = string
-  }))
-  default = {}
-}
-
-variable "access_policies_keys" {
-  description = "Map of object ids and keys permissions for Key Vault access policies"
-  type = map(object({
-    object_id       = string
-    key_permissions = list(string)
-    tenant_id       = string
-  }))
-  default = {}
-}
-
-variable "access_policies_certificates" {
-  description = "Map of object ids and certificate permissions for Key Vault access policies"
-  type = map(object({
-    object_id               = string
-    certificate_permissions = list(string)
-    tenant_id               = string
+    object_id = string
+    role_name = list(string)
+    tenant_id = string
   }))
   default = {}
 }

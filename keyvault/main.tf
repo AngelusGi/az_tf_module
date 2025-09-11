@@ -24,31 +24,15 @@ resource "azurerm_key_vault" "kv" {
   public_network_access_enabled = var.public_network_access_enabled
   tags                          = var.tags
   enable_rbac_authorization     = true
+
+  depends_on                    = [azurerm_client_config.current]
 }
 
-resource "azurerm_key_vault_access_policy" "secret_permissions" {
-  for_each           = var.access_policies_secrets
-  key_vault_id       = azurerm_key_vault.kv.id
-  tenant_id          = each.value.tenant_id
-  object_id          = each.value.object_id
-  secret_permissions = each.value.secret_permissions
-  depends_on         = [azurerm_key_vault.kv]
-}
-
-resource "azurerm_key_vault_access_policy" "certificate_permissions" {
-  for_each                = var.access_policies_certificates
-  key_vault_id            = azurerm_key_vault.kv.id
-  tenant_id               = each.value.tenant_id
-  object_id               = each.value.object_id
-  certificate_permissions = each.value.certificate_permissions
-  depends_on              = [azurerm_key_vault.kv]
-}
-
-resource "azurerm_key_vault_access_policy" "keys_permissions" {
-  for_each        = var.access_policies_keys
-  key_vault_id    = azurerm_key_vault.kv.id
-  tenant_id       = each.value.tenant_id
-  object_id       = each.value.object_id
-  key_permissions = each.value.key_permissions
-  depends_on      = [azurerm_key_vault.kv]
+resource "azurerm_role_assignment" "role" {
+  for_each             = var.role_assignments
+  scope                = azurerm_key_vault.kv.id
+  role_definition_name = each.value.role_name
+  principal_id         = each.value.object_id
+  
+  depends_on           = [azurerm_key_vault.kv]
 }
