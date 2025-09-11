@@ -47,7 +47,6 @@ variable "role_assignments" {
   type = map(object({
     object_id = string
     role_name = list(string)
-    tenant_id = string
   }))
   default = {}
 }
