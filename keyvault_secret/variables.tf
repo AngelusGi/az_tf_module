@@ -20,4 +20,5 @@ variable "ephemeral_secrets" {
     expiration_date = optional(string)
   }))
   default = {}
+  ephemeral = true
 }
