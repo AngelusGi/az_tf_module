@@ -22,3 +22,17 @@ variable "ephemeral_secrets" {
   default = {}
   ephemeral = true
 }
+
+variable "secrets" {
+  description = "Map of secrets for Key Vault"
+  type = map(object({
+    name            = string
+    secret          = string
+    content_type    = optional(string)
+    tags            = optional(map(string))
+    not_before_date = optional(string)
+    expiration_date = optional(string)
+  }))
+  default = {}
+  sensitive = true
+}
