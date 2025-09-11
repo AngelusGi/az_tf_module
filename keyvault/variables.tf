@@ -41,12 +41,6 @@ variable "sku" {
   nullable = false
 }
 
-variable "tenant_id" {
-  type      = string
-  nullable  = false
-  sensitive = true
-}
-
 variable "tags" {
   type     = map(string)
   nullable = true
