@@ -1,3 +1,13 @@
+variable "kv_name" {
+  type        = string
+  description = "name of the KeyVault"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "name of the resource group containing the KeyVault"
+}
+
 variable "secrets_metadata" {
   type = map(object({
     name            = string
