@@ -46,7 +46,7 @@ variable "role_assignments" {
   description = "Map of object ids and IAM Role Assignment for Key Vault access policies"
   type = map(object({
     object_id = string
-    role_name = list(string)
+    role_name = string
   }))
   default = {}
 }
