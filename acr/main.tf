@@ -7,7 +7,7 @@ resource "random_string" "suffix" {
 }
 
 locals {
-  resource_name = endswith(var.name, "-acr") ? var.name : "${var.name}-${random_string.suffix.result}-acr"
+  resource_name = "${var.name}${var.tags.env}${random_string.suffix.result}cr"
 }
 
 resource "azurerm_container_registry" "registry" {
