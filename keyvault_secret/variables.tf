@@ -18,7 +18,7 @@ variable "ephemeral_content" {
 variable "ephemeral_name" {
   description = "Name of the ephemeral secret in Key Vault"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "ephemeral_version" {
