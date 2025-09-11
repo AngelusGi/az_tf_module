@@ -1,24 +1,45 @@
-output "login_server" {
-  value     = azurerm_container_registry.registry.login_server
-  sensitive = true
+variable "location" {
+  type     = string
 }
 
-output "login_psw" {
-  value     = azurerm_container_registry.registry.admin_password
-  ephemeral = true
+variable "rg_name" {
+  type        = string
+  description = "name of the rosource group are contained DevOps Infra resources"
 }
 
-output "login_user" {
-  value     = azurerm_container_registry.registry.admin_username
-  ephemeral = true
+variable "name" {
+  type        = string
+  description = "name of ACR"
 }
 
-output "name" {
-  value = azurerm_container_registry.registry.name
-  sensitive = false
+variable "sku" {
+  type     = string
+  default  = "Basic"
 }
 
-output "resource_id" {
-  value = azurerm_container_registry.registry.id
-  sensitive = true
+variable "public_network_access_enabled"{
+  type     = bool
+  default  = false
+  nullable = true
+}
+
+variable "enable_admin"{
+  type     = bool
+  default  = false
+}
+
+variable "enable_anonymous_pull"{
+  type     = bool
+  default  = false
+}
+
+variable "tags"{
+  type     = map(string)
+  nullable = true
+}
+
+variable "retention_policy_in_days" {
+  type    = number
+  default = 7
+  nullable = true
 }
