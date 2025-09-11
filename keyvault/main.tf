@@ -49,6 +49,6 @@ resource "azurerm_key_vault_access_policy" "keys_permissions" {
   key_vault_id    = azurerm_key_vault.kv.id
   tenant_id       = each.value.tenant_id
   object_id       = each.value.object_id
-  key_permissions = each.value.keys_permissions
+  key_permissions = each.value.key_permissions
   depends_on      = [azurerm_key_vault.kv]
 }
