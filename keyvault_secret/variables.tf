@@ -11,7 +11,7 @@ variable "rg_name" {
 variable "ephemeral_content" {
   description = "Content of the ephemeral secret (value to store in Key Vault)"
   type        = string
-  default     = null
+  default     = ""
   ephemeral   = true
 }
 
@@ -62,7 +62,7 @@ variable "ephemeral_expiration_date" {
 variable "secret_content" {
   description = "Contenuto del segreto standard (valore da salvare in Key Vault)"
   type        = string
-  default     = null
+  default     = ""
   sensitive   = true
 }
 

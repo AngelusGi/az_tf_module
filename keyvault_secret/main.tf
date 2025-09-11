@@ -4,7 +4,7 @@ data "azurerm_key_vault" "kv" {
 }
 
 resource "azurerm_key_vault_secret" "ephemeral" {
-  count            = (var.ephemeral_name != null) ? 1 : 0
+  count            = (var.ephemeral_name == null) ? 0 : 1
   name             = var.ephemeral_name
   value_wo_version = var.ephemeral_version
   value_wo         = var.ephemeral_content
@@ -18,7 +18,7 @@ resource "azurerm_key_vault_secret" "ephemeral" {
 }
 
 resource "azurerm_key_vault_secret" "secret" {
-  count           = (var.ephemeral_name != null) ? 1 : 0
+  count           = (var.secret_name == null) ? 0 : 1
   name            = var.secret_name
   value           = var.secret_content
   key_vault_id    = data.azurerm_key_vault.kv.id
