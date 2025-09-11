@@ -18,14 +18,13 @@ resource "azurerm_key_vault_secret" "ephemeral" {
 }
 
 resource "azurerm_key_vault_secret" "secret" {
-  for_each         = var.secrets
+  for_each         = var.secrets_metadata
   name             = each.value.name
-  value         = each.value.secret
+  value            = var.secrets_values[each.key]
   key_vault_id     = data.azurerm_key_vault.kv.id
-  content_type     = each.value.content_type
-  tags             = each.value.tags
-  not_before_date  = each.value.not_before_date
-  expiration_date  = each.value.expiration_date
-  
+  content_type     = lookup(each.value, "content_type", "text/plain")
+  tags             = lookup(each.value, "tags", {})
+  not_before_date  = lookup(each.value, "not_before_date", null)
+  expiration_date  = lookup(each.value, "expiration_date", null)
   depends_on       = [data.azurerm_key_vault.kv]
 }
