@@ -25,7 +25,7 @@ resource "azurerm_key_vault" "kv" {
   tags                          = var.tags
   enable_rbac_authorization     = true
 
-  depends_on                    = [azurerm_client_config.current]
+  depends_on                    = [ data.azurerm_client_config.current ]
 }
 
 resource "azurerm_role_assignment" "role" {
