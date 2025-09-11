@@ -1,5 +1,5 @@
 variable "location" {
-  type     = string
+  type = string
 }
 
 variable "rg_name" {
@@ -13,33 +13,33 @@ variable "name" {
 }
 
 variable "sku" {
-  type     = string
-  default  = "Basic"
+  type    = string
+  default = "Basic"
 }
 
-variable "public_network_access_enabled"{
+variable "public_network_access_enabled" {
   type     = bool
   default  = false
   nullable = true
 }
 
-variable "enable_admin"{
-  type     = bool
-  default  = false
+variable "enable_admin" {
+  type    = bool
+  default = false
 }
 
-variable "enable_anonymous_pull"{
-  type     = bool
-  default  = false
+variable "enable_anonymous_pull" {
+  type    = bool
+  default = false
 }
 
-variable "tags"{
+variable "tags" {
   type     = map(string)
   nullable = true
 }
 
 variable "retention_policy_in_days" {
-  type    = number
-  default = 7
+  type     = number
+  default  = 7
   nullable = true
 }

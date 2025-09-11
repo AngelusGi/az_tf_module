@@ -1,13 +1,13 @@
 resource "random_string" "suffix" {
-  length = 3
+  length  = 3
   special = false
-  upper = true
+  upper   = true
   numeric = true
-  lower = true
+  lower   = true
 }
 
 locals {
-  resource_name = "${var.name}${var.tags.env}${random_string.suffix.result}cr"
+  resource_name = endswith(var.name, "cr") ? var.name : "${var.name}${var.tags.env}${random_string.suffix.result}cr"
 }
 
 resource "azurerm_container_registry" "registry" {

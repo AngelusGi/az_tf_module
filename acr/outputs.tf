@@ -14,11 +14,11 @@ output "login_user" {
 }
 
 output "name" {
-  value = azurerm_container_registry.registry.name
+  value     = azurerm_container_registry.registry.name
   sensitive = false
 }
 
 output "resource_id" {
-  value = azurerm_container_registry.registry.id
+  value     = azurerm_container_registry.registry.id
   sensitive = true
 }
