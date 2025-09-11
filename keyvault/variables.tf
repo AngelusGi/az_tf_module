@@ -29,7 +29,6 @@ variable "public_network_access_enabled" {
   default = false
 }
 
-
 variable "name" {
   type        = string
   description = "name of KeyVault"
@@ -46,18 +45,6 @@ variable "tenant_id" {
   type      = string
   nullable  = false
   sensitive = true
-}
-
-variable "secret_value" {
-  type      = string
-  nullable  = true
-  ephemeral = true
-}
-
-variable "secret_version" {
-  type     = number
-  default  = 1
-  nullable = false
 }
 
 variable "tags" {
@@ -91,4 +78,3 @@ variable "access_policies_certificates" {
   }))
   default = {}
 }
-

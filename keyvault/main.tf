@@ -36,19 +36,19 @@ resource "azurerm_key_vault_access_policy" "secret_permissions" {
 }
 
 resource "azurerm_key_vault_access_policy" "certificate_permissions" {
-  for_each           = var.access_policies_certificates
-  key_vault_id       = azurerm_key_vault.kv.id
-  tenant_id          = data.azurerm_client_config.current.tenant_id
-  object_id          = each.value.object_id
-  secret_permissions = each.value.secret_permissions
-  depends_on         = [azurerm_key_vault.kv]
+  for_each                = var.access_policies_certificates
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = each.value.object_id
+  certificate_permissions = each.value.certificate_permissions
+  depends_on              = [azurerm_key_vault.kv]
 }
 
-resource "azurerm_key_vault_access_policy" "secret_permissions" {
-  for_each           = var.access_policies_keys
-  key_vault_id       = azurerm_key_vault.kv.id
-  tenant_id          = data.azurerm_client_config.current.tenant_id
-  object_id          = each.value.object_id
-  secret_permissions = each.value.secret_permissions
-  depends_on         = [azurerm_key_vault.kv]
+resource "azurerm_key_vault_access_policy" "keys_permissions" {
+  for_each         = var.access_policies_keys
+  key_vault_id     = azurerm_key_vault.kv.id
+  tenant_id        = data.azurerm_client_config.current.tenant_id
+  object_id        = each.value.object_id
+  keys_permissions = each.value.keys_permissions
+  depends_on       = [azurerm_key_vault.kv]
 }
