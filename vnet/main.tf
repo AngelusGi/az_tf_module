@@ -21,8 +21,8 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "sbt" {
   for_each = { for subnet in var.subnets : subnet.name => subnet }
   name                 = each.value.name
-  resource_group_name  = azurerm_virtual_network.main.resource_group_name
-  virtual_network_name = azurerm_virtual_network.main.name
+  resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = each.value.address_prefixes
   service_endpoints    = each.value.service_endpoints
   private_endpoint_network_policies = each.value.private_endpoint_network_policies
@@ -37,5 +37,6 @@ resource "azurerm_subnet" "sbt" {
       }
     }
   }
-  depends_on = [azurerm_virtual_network.main]
+  
+  depends_on = [azurerm_virtual_network.vnet]
 }
