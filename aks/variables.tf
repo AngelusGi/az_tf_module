@@ -77,3 +77,12 @@ variable "docker_registry_id" {
 variable "default_nodepool_subnet_id" {
   type = string
 }
+
+variable "role_assignments" {
+  description = "Map of object ids and IAM Role Assignment for Key Vault access policies"
+  type = map(object({
+    object_id = string
+    role_name = string
+  }))
+  default = {}
+}

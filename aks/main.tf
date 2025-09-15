@@ -46,8 +46,19 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 }
 
 resource "azurerm_role_assignment" "registry_pull" {
+  scope                            = var.docker_registry_id
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
-  scope                            = var.docker_registry_id
   skip_service_principal_aad_check = false
+ 
+  depends_on           = [azurerm_kubernetes_cluster.k8s]
+}
+
+resource "azurerm_role_assignment" "users" {
+  for_each             = var.role_assignments
+  scope                = azurerm_kubernetes_cluster.k8s.id
+  role_definition_name = each.value.role_name
+  principal_id         = each.value.object_id
+  
+  depends_on           = [azurerm_kubernetes_cluster.k8s]
 }
