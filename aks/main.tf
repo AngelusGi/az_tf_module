@@ -46,9 +46,10 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 
   network_profile {
-    network_plugin      = "cilium"
+    network_plugin      = "azure"
     network_plugin_mode = "overlay"
     network_data_plane  = "cilium"
+    network_policy      = "cilium"
     service_cidr        = var.service_cidr
     dns_service_ip      = var.dns_service_ip
     pod_cidr            = var.pod_cidr
