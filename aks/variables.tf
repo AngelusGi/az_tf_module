@@ -39,7 +39,7 @@ variable "node_disk_size" {
 
 variable "node_count_max" {
   type     = number
-  default  = 2
+  default  = 3
 }
 
 variable "node_count_min" {
@@ -49,32 +49,7 @@ variable "node_count_min" {
 
 variable "node_count" {
   type     = number
-  default  = 2
-}
-
-variable "vnet_name" {
-  type        = string
-  description = "name of the vnet"
-}
-
-variable "sp_client_id" {
-  type      = string
-  sensitive = true
-}
-
-variable "sp_client_secret" {
-  type      = string
-  ephemeral = true
-}
-
-variable "subnet_cidr" {
-  default = ["10.0.0.128/27"]
-  type = list(string)
-}
-
-variable "subnet_name" {
-  default = "aks-subnet"
-  type = string
+  default  = 1
 }
 
 variable "log_analytics_workspace_id" {
