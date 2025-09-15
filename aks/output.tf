@@ -1,20 +1,20 @@
 output "login_server" {
-  value     = data.azurerm_kubernetes_cluster.k8s.fqdn
+  value     = azurerm_kubernetes_cluster.k8s.fqdn
   sensitive = false
 }
 
 output "kubeconfig" {
-  value     = data.azurerm_kubernetes_cluster.k8s.kube_config
+  value     = azurerm_kubernetes_cluster.k8s.kube_config
   sensitive = true
 }
 
 output "network_profile" {
-  value     = data.azurerm_kubernetes_cluster.k8s.network_profile
+  value     = azurerm_kubernetes_cluster.k8s.network_profile
   sensitive = false
 }
 
 output "subnet" {
-  value = data.azurerm_subnet.aks.address_prefix
+  value = azurerm_subnet.aks.address_prefix
   sensitive = false
 }
 
