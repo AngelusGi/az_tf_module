@@ -20,7 +20,7 @@ output "subnets" {
     subnet.name => {
       name          = subnet.name
       id            = subnet.id
-      address_space = subnet.address_prefix
+      address_space = subnet.ip_address_pool
     }
   }
 }
