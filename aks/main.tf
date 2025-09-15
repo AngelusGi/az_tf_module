@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 }
 
 resource "azurerm_role_assignment" "registry_pull" {
-  principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity.object_id
+  principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   scope                            = var.docker_registry_id
   skip_service_principal_aad_check = false
