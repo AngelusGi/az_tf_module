@@ -16,8 +16,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   resource_group_name               = var.rg_name
   dns_prefix                        = local.resource_name
   sku_tier                          = var.sku
+  cost_analysis_enabled             = var.cost_analysis_enabled
   role_based_access_control_enabled = true
-  cost_analysis_enabled             = true
   image_cleaner_enabled             = true
   tags                              = var.tags
 

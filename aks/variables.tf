@@ -37,6 +37,11 @@ variable "default_node_pool_disk_size" {
   default = 30
 }
 
+variable "cost_analysis_enabled"{
+  type    = bool
+  default = false
+}
+
 variable "default_node_pool_max" {
   type     = number
   default  = 3
