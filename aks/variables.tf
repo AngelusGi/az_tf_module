@@ -37,6 +37,11 @@ variable "default_node_pool_disk_size" {
   default = 30
 }
 
+variable "image_cleaner_interval_hours" {
+  type    = number
+  default = 24
+}
+
 variable "cost_analysis_enabled"{
   type    = bool
   default = false

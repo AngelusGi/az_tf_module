@@ -19,6 +19,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   cost_analysis_enabled             = var.cost_analysis_enabled
   role_based_access_control_enabled = true
   image_cleaner_enabled             = true
+  image_cleaner_interval_hours      = var.image_cleaner_interval_hours
   tags                              = var.tags
 
   default_node_pool {
