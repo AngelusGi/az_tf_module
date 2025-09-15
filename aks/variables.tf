@@ -91,3 +91,21 @@ variable "role_assignments" {
   }))
   default = {}
 }
+
+variable "service_cidr" {
+  description = "The CIDR block for the service network"
+  type        = string
+  default     = "192.168.9.0/24"
+}
+
+variable "dns_service_ip" {
+  description = "The DNS service IP address"
+  type        = string
+  default     = "192.168.9.5"
+}
+
+variable "pod_cidr" {
+  description = "The CIDR block for the pod network"
+  type        = string
+  default     = "192.168.10.0/23"
+}

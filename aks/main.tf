@@ -44,6 +44,17 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     # use of managed identity for the cluster
     type = "SystemAssigned"
   }
+
+  network_profile {
+    network_plugin      = "cilium"
+    network_plugin_mode = "overlay"
+    network_policy      = "cilium"
+    service_cidr        = var.service_cidr
+    dns_service_ip      = var.dns_service_ip
+    pod_cidr            = var.pod_cidr
+    outbound_type       = "loadBalancer"
+    load_balancer_sku   = "standard"
+  }
 }
 
 resource "azurerm_role_assignment" "registry_pull" {
@@ -51,8 +62,8 @@ resource "azurerm_role_assignment" "registry_pull" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   skip_service_principal_aad_check = false
- 
-  depends_on           = [azurerm_kubernetes_cluster.k8s]
+
+  depends_on = [azurerm_kubernetes_cluster.k8s]
 }
 
 resource "azurerm_role_assignment" "users" {
@@ -60,6 +71,6 @@ resource "azurerm_role_assignment" "users" {
   scope                = azurerm_kubernetes_cluster.k8s.id
   role_definition_name = each.value.role_name
   principal_id         = each.value.object_id
-  
-  depends_on           = [azurerm_kubernetes_cluster.k8s]
+
+  depends_on = [azurerm_kubernetes_cluster.k8s]
 }
