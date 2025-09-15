@@ -50,7 +50,7 @@ variable "default_node_pool_min" {
   type    = number
   default = 1
   validation {
-    condition     = var.default_node_pool_max >= 1 && var.default_node_pool_max <= 1000
+    condition     = var.default_node_pool_min >= 1 && var.default_node_pool_min <= 1000
     error_message = "Node pool size size should be in range 1-1000"
   }
 }
@@ -59,7 +59,7 @@ variable "default_node_pool_count" {
   type    = number
   default = 1
   validation {
-    condition     = var.default_node_pool_max >= 1 && var.default_node_pool_max <= 1000
+    condition     = var.default_node_pool_count >= 1 && var.default_node_pool_count <= 1000
     error_message = "Node pool size size should be in range 1-1000"
   }
 }
