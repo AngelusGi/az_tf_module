@@ -4,5 +4,8 @@ terraform {
       source = "hashicorp/azurerm"
     }
 
+    random = {
+      source = "hashicorp/random"
+    }
   }
 }
