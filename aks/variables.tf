@@ -2,7 +2,7 @@ variable "location" {
   type     = string
 }
 
-variable "auto_scaling_enabled" {
+variable "default_node_pool_auto_scaling" {
   type    = bool
   default = false
 }
@@ -27,27 +27,27 @@ variable "sku" {
   default  = "Free"
 }
 
-variable "node_sku" {
+variable "default_node_pool_vm_sku" {
   type     = string
   default  = "Standard_B2ls_v2"
 }
 
-variable "node_disk_size" {
+variable "default_node_pool_disk_size" {
   type     = number
   default  = 30
 }
 
-variable "node_count_max" {
+variable "default_node_pool_max" {
   type     = number
   default  = 3
 }
 
-variable "node_count_min" {
+variable "default_node_pool_min" {
   type     = number
   default  = 1
 }
 
-variable "node_count" {
+variable "default_node_pool_count" {
   type     = number
   default  = 1
 }

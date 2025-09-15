@@ -23,12 +23,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
   default_node_pool {
     name                 = "default"
-    vm_size              = var.node_sku
-    os_disk_size_gb      = var.node_disk_size
-    max_count            = var.node_count_max
-    min_count            = var.node_count_min
-    node_count           = var.node_count
-    auto_scaling_enabled = var.auto_scaling_enabled
+    vm_size              = var.default_node_pool_vm_sku
+    os_disk_size_gb      = var.default_node_pool_disk_size
+    max_count            = var.default_node_pool_max
+    min_count            = var.default_node_pool_min
+    node_count           = var.default_node_pool_count
+    auto_scaling_enabled = var.default_node_pool_auto_scaling
     os_disk_type         = "Managed"
     vnet_subnet_id       = var.default_nodepool_subnet_id
   }
