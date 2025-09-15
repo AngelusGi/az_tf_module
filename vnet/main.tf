@@ -10,7 +10,7 @@ locals {
   resource_name = endswith(var.name, "-vnet") ? var.name : "${var.name}-${random_string.suffix.result}-vnet"
 }
 
-resource "azurerm_virtual_network" "main" {
+resource "azurerm_virtual_network" "vnet" {
     name                = local.resource_name
     address_space       = var.address_space
     location            = var.location
@@ -18,7 +18,7 @@ resource "azurerm_virtual_network" "main" {
     tags                = var.tags
 }
 
-resource "azurerm_subnet" "main" {
+resource "azurerm_subnet" "sbt" {
   for_each = { for subnet in var.subnets : subnet.name => subnet }
   name                 = each.value.name
   resource_group_name  = azurerm_virtual_network.main.resource_group_name
