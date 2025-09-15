@@ -17,6 +17,11 @@ variable "tags" {
   default = null
 }
 
+variable "default_node_pool_tags" {
+  type    = map(string)
+  default = null
+}
+
 variable "name" {
   type        = string
   description = "name of AKS instance"
