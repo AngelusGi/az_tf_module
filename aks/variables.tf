@@ -81,3 +81,11 @@ variable "log_analytics_workspace_id" {
   description = "ID of the Log Analytics Workspace for AKS monitoring"
   type        = string
 }
+
+variable "docker_registry_id"{
+  type        = string
+}
+
+variable "default_nodepool_subnet_id"{
+  type        = string
+}
